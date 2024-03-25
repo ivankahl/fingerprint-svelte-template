@@ -60,7 +60,6 @@ async function checkUserExists(email: string): Promise<ValidationCheckResult>{
  * Registers a new user in the database.
  * @param email The email address of the new user registering
  * @param password The password of the new user registering
- * @param visitorId The user's Fingerprint Visitor ID
  * @returns The ID of the newly registered user
  */
 async function registerUser(email: string, password: string): Promise<string> {
