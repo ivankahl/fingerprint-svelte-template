@@ -7,6 +7,8 @@ import { eq } from "drizzle-orm";
 
 type ValidationCheckResult = ActionFailure<{ message: string }> | void;
 
+export const ssr = false;
+
 export const actions: Actions = {
     default: async (event) => {
         const formData = await event.request.formData();
