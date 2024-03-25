@@ -43,3 +43,5 @@ npm run dev
 The web app is built using Svelte and SvelteKit. In addition to that:
 
 - **Drizzle ORM** is used to access the Postgres database
+- **Lucia** is used to manage auth
+- **Skeleton** and **Tailwind** are used to build the UI
