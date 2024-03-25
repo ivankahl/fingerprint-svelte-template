@@ -1,38 +1,45 @@
-# create-svelte
+# Fingerprint Svelte Template
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This template repository is used to demonstrate how to add Fingerprint to a Svelte application to prevent users from registering an excessive number of accounts for a web app.
 
-## Creating a project
+## Getting Started
 
-If you're seeing this, you've probably already done this step. Congrats!
+Clone this repository and install the dependencies using this command:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```shell
+npm i
 ```
 
-## Developing
+You'll need a Postgres database to store user details. You can use Docker to host one locally using the following command:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```shell
+docker run --name svelte-postgres -p 5432:5432 -e POSTGRES_PASSWORD=verysecurepassword -e POSTGRES_DB=svelte -d postgres
+```
 
-```bash
+Copy the `.env.example` file and call it `.env`. Then, update the database details in that file:
+
+```
+DB_HOST=<YOUR_DB_HOST>
+DB_PORT=<YOUR_DB_PORT>
+DB_NAME=<YOUR_DB_NAME>
+DB_USER=<YOUR_DB_USER>
+DB_PASSWORD=<YOUR_DB_PASSWORD>
+```
+
+Once you've configured the database in the app, use the following command to run the Drizzle ORM migrations:
+
+```shell
+npm run push
+```
+
+Then, start the application using the following command:
+
+```shell
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Technologies
 
-To create a production version of your app:
+The web app is built using Svelte and SvelteKit. In addition to that:
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- **Drizzle ORM** is used to access the Postgres database
