@@ -1,6 +1,6 @@
 import { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD } from '$env/static/private';
-
-import type { QueryResult } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { schema } from './schema';
 import pg from 'pg';
 const { Pool } = pg;
 
@@ -12,11 +12,5 @@ const pool = new Pool({
     password: DB_PASSWORD
 });
 
-export const query = async (text: string, values?: unknown[]): Promise<QueryResult> => {
-    const client = await pool.connect();
-    try {
-        return await client.query(text, values);
-    } finally {
-        client.release();
-    }
-}
+export const db = drizzle(pool, { schema });
+export * from './schema';
